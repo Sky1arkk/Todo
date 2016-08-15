@@ -79,10 +79,17 @@ namespace Todo.Views
             var saveButton = new Button { Text = "Save" };
             saveButton.Clicked += (sender, e) =>
             {
-                var todoItem = (TodoItem)BindingContext;
-                todoItem.Priority = selectedPickerValue;
-                App.Database.SaveItem(todoItem);
-                this.Navigation.PopAsync();
+                if (nameEntry.Text != null && noteEditor.Text != null && selectedPickerValue != 0)
+                {
+                    var todoItem = (TodoItem) BindingContext;
+                    todoItem.Priority = selectedPickerValue;
+                    App.Database.SaveItem(todoItem);
+                    this.Navigation.PopAsync();
+                }
+                else
+                {
+                    DisplayAlert("Something went wrong", "Some fields are empty or priority not selected", "OK");
+                }
             };
 
             var deleteButton = new Button { Text = "Delete" };
