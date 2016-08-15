@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using Todo.Models;
+using Todo.View.CustomControls;
 using Xamarin.Forms;
 
 namespace Todo.Views
@@ -45,25 +46,27 @@ namespace Todo.Views
             noteEditor.SetBinding(Editor.TextProperty, "Note");
 
             var priorityLabel = new Label() { Text = "Priority", FontSize = fontSize };
-            var priorityPicker = new Picker() { Title = "Select priority" };
+            var priorityPicker = new CustomPicker() { Title = "Select priority" };
             if (Device.OS == TargetPlatform.Windows)
             {
                 priorityPicker.Title = null;
             }
 
-            int priorityPickerValue = 3;
+            priorityPicker.SetBinding(CustomPicker.PickerValueProperty, "Priority");
+
             priorityPicker.Items.Add("1");
             priorityPicker.Items.Add("2");
             priorityPicker.Items.Add("3");
+            int selectedPickerValue = 0;
             priorityPicker.SelectedIndexChanged += (sender, args) =>
             {
-                if (priorityPicker.SelectedIndex == -1)
+                if (priorityPicker.SelectedIndex < 0 || priorityPicker.SelectedIndex > 2)
                 {
-                    priorityPickerValue = 3;
+                    selectedPickerValue = 3;
                 }
                 else
                 {
-                    priorityPickerValue = Int32.Parse(priorityPicker.Items[priorityPicker.SelectedIndex]);
+                    selectedPickerValue = Int32.Parse(priorityPicker.Items[priorityPicker.SelectedIndex]);
                 }
             };
             
@@ -76,7 +79,7 @@ namespace Todo.Views
             saveButton.Clicked += (sender, e) =>
             {
                 var todoItem = (TodoItem)BindingContext;
-                todoItem.Priority = priorityPickerValue;
+                todoItem.Priority = selectedPickerValue;
                 App.Database.SaveItem(todoItem);
                 this.Navigation.PopAsync();
             };
