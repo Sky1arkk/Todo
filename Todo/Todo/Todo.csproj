@@ -37,11 +37,11 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Data\TodoItemDatabase.cs" />
-    <Compile Include="Models\Priority.cs" />
     <Compile Include="Models\TodoItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite\ISQLite.cs" />
     <Compile Include="View\CustomControls\CustomPicker.cs" />
+    <Compile Include="View\CustomControls\CustomSwitch.cs" />
     <Compile Include="View\ItemPage.cs" />
     <Compile Include="View\ListPage.cs" />
   </ItemGroup>

@@ -57,6 +57,7 @@ namespace Todo.Views
             priorityPicker.Items.Add("1");
             priorityPicker.Items.Add("2");
             priorityPicker.Items.Add("3");
+
             int selectedPickerValue = 0;
             priorityPicker.SelectedIndexChanged += (sender, args) =>
             {
@@ -72,7 +73,7 @@ namespace Todo.Views
             
 
             var doneLabel = new Label { Text = "Done", FontSize = fontSize };
-            var doneSwitch = new Switch() { HorizontalOptions = LayoutOptions.Start };
+            var doneSwitch = new CustomSwitch() { HorizontalOptions = LayoutOptions.Start };
             doneSwitch.SetBinding(Switch.IsToggledProperty, "Done");
 
             var saveButton = new Button { Text = "Save" };
