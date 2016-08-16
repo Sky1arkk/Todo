@@ -31,6 +31,8 @@ namespace Todo.Views
                 };
 
                 var nameLabel = new Label { HorizontalOptions = LayoutOptions.StartAndExpand, FontSize = 20};
+
+                //checkImg icon not displaying on windows phone
                 var checkImg = new Image
                 {
                     Source = ImageSource.FromFile("check.png"),
@@ -76,35 +78,29 @@ namespace Todo.Views
             };
 
             #region toolbar
-            ToolbarItem tbi = null;
-
-            if (Device.OS == TargetPlatform.Android)
-            { // BUG: Android doesn't support the icon being null
-                tbi = new ToolbarItem("+", "plus", () =>
-                {
-                    var todoItem = new TodoItem();
-                    var todoPage = new ItemPage { BindingContext = todoItem };
-                    Navigation.PushAsync(todoPage);
-                }, 0, 0);
-            }
-            if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
+            var tbAddItem = new ToolbarItem("Add task", "null", () =>
             {
-                tbi = new ToolbarItem("Add", "add.png", () =>
+                var todoItem = new TodoItem();
+                var todoPage = new ItemPage { BindingContext = todoItem };
+                Navigation.PushAsync(todoPage);
+            }, ToolbarItemOrder.Secondary, 0);
+
+            var tbRemoveCompletedItem = new ToolbarItem("Remove completed tasks", "null", () =>
                 {
-                    var todoItem = new TodoItem();
-                    var todoPage = new ItemPage { BindingContext = todoItem };
-                    Navigation.PushAsync(todoPage);
-                }, 0, 0);
-            }
+                    foreach (var todoItem in App.Database.GetCompletedItems())
+                    {
+                        App.Database.DeleteItem(todoItem.Id);
+                    }
 
-            ToolbarItems.Add(tbi);
+                    //Refresh page
+                    var listPage = new ListPage();
+                    Navigation.PushAsync(listPage);
+
+                }, ToolbarItemOrder.Secondary, 0);
+
+            ToolbarItems.Add(tbAddItem);
+            ToolbarItems.Add(tbRemoveCompletedItem);
             #endregion
-
-            //var scrollView = new ScrollView { Content = _todoItemListView };
-
-            //stackLayout.Children.Add(scrollView);
-
-            //Content = stackLayout;
 
             stackLayout.Children.Add(_todoItemListView);
             var scrollView = new ScrollView() { Content = stackLayout };

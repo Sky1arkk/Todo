@@ -15,7 +15,7 @@ namespace Todo
         SQLiteConnection database;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tasky.DL.TaskDatabase"/> TaskDatabase. 
+        /// Initializes a new instance of the TodoDB.db3 database. 
         /// if the database doesn't exist, it will create the database and all the tables.
         /// </summary>
         /// <param name='path'>
@@ -36,11 +36,11 @@ namespace Todo
             }
         }
 
-        public IEnumerable<TodoItem> GetItemsNotDone()
+        public IEnumerable<TodoItem> GetCompletedItems()
         {
             lock (locker)
             {
-                return database.Query<TodoItem>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+                return database.Query<TodoItem>("SELECT * FROM [TodoItem] WHERE [Done] = 1");
             }
         }
 
