@@ -30,9 +30,10 @@ namespace Todo.Views
                     WidthRequest = 40
                 };
 
-                var nameLabel = new Label { HorizontalOptions = LayoutOptions.StartAndExpand, FontSize = 20};
+                var nameLabel = new Label { HorizontalOptions = LayoutOptions.StartAndExpand,
+                    VerticalOptions = LayoutOptions.Center,
+                    FontSize = 20};
 
-                //checkImg icon not displaying on windows phone
                 var checkImg = new Image
                 {
                     Source = ImageSource.FromFile("check.png"),
