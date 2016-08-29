@@ -24,6 +24,8 @@ namespace Todo.WinPhone.CustomRenderers
                 Control.Margin = new Thickness(-15, -5, -15, -5);
                 Control.Padding = new Thickness(0);
                 Control.BorderThickness = new Thickness(0);
+                Control.OffContent = "";
+                Control.OnContent = "";
             }
         }
     }
