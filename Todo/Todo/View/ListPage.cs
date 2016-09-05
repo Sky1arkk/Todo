@@ -86,6 +86,13 @@ namespace Todo.Views
                 Navigation.PushAsync(todoPage);
             }, ToolbarItemOrder.Secondary, 0);
 
+            var tbSortItemsByPriority = new ToolbarItem("Sort by priority", "null", () =>
+            {
+                var todoItemsList = (List<TodoItem>)App.Database.GetItems();
+                todoItemsList = todoItemsList.OrderBy(item => item.Priority).ToList();
+                _todoItemListView.ItemsSource = todoItemsList;
+            }, ToolbarItemOrder.Secondary, 0);
+
             var tbRemoveCompletedItem = new ToolbarItem("Remove completed tasks", "null", () =>
                 {
                     foreach (var todoItem in App.Database.GetCompletedItems())
@@ -100,6 +107,7 @@ namespace Todo.Views
                 }, ToolbarItemOrder.Secondary, 0);
 
             ToolbarItems.Add(tbAddItem);
+            ToolbarItems.Add(tbSortItemsByPriority);
             ToolbarItems.Add(tbRemoveCompletedItem);
             #endregion
 
