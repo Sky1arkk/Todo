@@ -17,27 +17,31 @@ namespace Todo.Views
         public ListPage()
         {
             Title = "Todo";
-            Padding = new Thickness(10);
-
-            var stackLayout = new StackLayout { Spacing = 20 };
+            Padding = new Thickness(App.ScreenWidth / 40);
 
             var dataTemplate = new DataTemplate(() =>
             {
                 var priorityLabel = new Label
                 {
-                    FontSize = 30,
-                    HeightRequest = 40,
-                    WidthRequest = 40
+                    VerticalOptions = LayoutOptions.Center,
+                    FontSize = App.ScreenHeight / 20,
+                    HeightRequest = App.ScreenWidth / 10,
+                    WidthRequest = App.ScreenWidth / 10
                 };
 
-                var nameLabel = new Label { HorizontalOptions = LayoutOptions.StartAndExpand,
+                var nameLabel = new Label
+                {
+                    HorizontalOptions = LayoutOptions.Start,
                     VerticalOptions = LayoutOptions.Center,
-                    FontSize = 20};
+                    FontSize = App.ScreenHeight / 35,
+                    WidthRequest = App.ScreenWidth / 1.4,
+                    LineBreakMode = LineBreakMode.TailTruncation
+                };
 
                 var checkImg = new Image
                 {
                     Source = ImageSource.FromFile("check.png"),
-                    HorizontalOptions = LayoutOptions.End
+                    HorizontalOptions = LayoutOptions.EndAndExpand
                 };
 
                 priorityLabel.SetBinding(Label.TextProperty, "Priority");
@@ -45,17 +49,9 @@ namespace Todo.Views
                 checkImg.SetBinding(IsVisibleProperty, "Done");
 
                 var mainLayout = new StackLayout { Orientation = StackOrientation.Horizontal };
-                var subLayout = new StackLayout
-                {
-                    Orientation = StackOrientation.Horizontal,
-                    HorizontalOptions = LayoutOptions.FillAndExpand,
-                    VerticalOptions = LayoutOptions.Center
-                };
                 mainLayout.Children.Add(priorityLabel);
-                mainLayout.Children.Add(subLayout);
-
-                subLayout.Children.Add(nameLabel);
-                subLayout.Children.Add(checkImg);
+                mainLayout.Children.Add(nameLabel);
+                mainLayout.Children.Add(checkImg);
 
                 return new ViewCell { View = mainLayout };
             });
@@ -63,7 +59,8 @@ namespace Todo.Views
             _todoItemListView = new ListView
             {
                 ItemsSource = App.Database.GetItems(),
-                ItemTemplate = dataTemplate
+                ItemTemplate = dataTemplate,
+                RowHeight = (int) (App.ScreenWidth / 10)
             };
 
             _todoItemListView.ItemSelected += (sender, e) =>
@@ -111,8 +108,7 @@ namespace Todo.Views
             ToolbarItems.Add(tbRemoveCompletedItem);
             #endregion
 
-            stackLayout.Children.Add(_todoItemListView);
-            var scrollView = new ScrollView() { Content = stackLayout };
+            var scrollView = new ScrollView() { Content = _todoItemListView };
             Content = scrollView;
 
         }

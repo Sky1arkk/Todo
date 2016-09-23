@@ -28,6 +28,9 @@ namespace Todo.WinPhone
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            Todo.App.ScreenHeight = Window.Current.Bounds.Height;
+            Todo.App.ScreenWidth = Window.Current.Bounds.Width;
+
             LoadApplication(new Todo.App());
         }
 

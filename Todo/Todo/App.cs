@@ -7,6 +7,9 @@ namespace Todo
 {
     public class App : Application
     {
+        public static double ScreenHeight { get; set; }
+        public static double ScreenWidth { get; set; }
+
         private static TodoItemDatabase _database;
 
         public App()
@@ -26,6 +29,9 @@ namespace Todo
             }
 
             MainPage = nav;
+
+            Debug.WriteLine("Heigh: " + App.ScreenHeight);
+            Debug.WriteLine("Width: " + App.ScreenWidth);
         }
 
         public static TodoItemDatabase Database
