@@ -26,14 +26,14 @@ namespace Todo.Views
                     VerticalOptions = LayoutOptions.Center,
                     FontSize = App.ScreenHeight / 20,
                     HeightRequest = App.ScreenWidth / 10,
-                    WidthRequest = App.ScreenWidth / 10
+                    WidthRequest = App.ScreenWidth / 15
                 };
 
                 var nameLabel = new Label
                 {
                     HorizontalOptions = LayoutOptions.Start,
                     VerticalOptions = LayoutOptions.Center,
-                    FontSize = App.ScreenHeight / 35,
+                    FontSize = App.ScreenHeight / 30,
                     WidthRequest = App.ScreenWidth / 1.4,
                     LineBreakMode = LineBreakMode.TailTruncation
                 };

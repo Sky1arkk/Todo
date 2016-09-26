@@ -13,9 +13,10 @@ namespace Todo.Views
     {
         public ItemPage()
         {
-            double fontSize = 20;
+            double labelFontSize = App.ScreenHeight / 20;
+            double entryFontSize = App.ScreenHeight / 30;
 
-            Padding = 20;
+            Padding = new Thickness(App.ScreenWidth / 40);
 
             var stackLayout = new StackLayout();
 
@@ -23,10 +24,11 @@ namespace Todo.Views
 
             NavigationPage.SetHasNavigationBar(this, true);
 
-            var nameLabel = new Label() { Text = "Name", FontSize = fontSize };
+            var nameLabel = new Label() { Text = "Name", FontSize = labelFontSize };
             var nameEntry = new Entry()
             {
-                Placeholder = "Enter name or subject"
+                Placeholder = "Enter name or subject",
+                FontSize = entryFontSize
             };
             nameEntry.TextChanged += (sender, e) =>
             {
@@ -41,11 +43,15 @@ namespace Todo.Views
 
             nameEntry.SetBinding(Entry.TextProperty, "Name");
 
-            var noteLabel = new Label() { Text = "Note", FontSize = fontSize };
-            var noteEditor = new Editor() { Text = "Enter your note" };
+            var noteLabel = new Label() { Text = "Note", FontSize = labelFontSize };
+            var noteEditor = new Editor()
+            {
+                Text = "Enter your note",
+                FontSize = entryFontSize
+            };
             noteEditor.SetBinding(Editor.TextProperty, "Note");
 
-            var priorityLabel = new Label() { Text = "Priority", FontSize = fontSize };
+            var priorityLabel = new Label() { Text = "Priority", FontSize = labelFontSize };
             var priorityPicker = new CustomPicker() { Title = "Select priority" };
             if (Device.OS == TargetPlatform.Windows)
             {
@@ -72,11 +78,11 @@ namespace Todo.Views
             };
             
 
-            var doneLabel = new Label { Text = "Done", FontSize = fontSize };
+            var doneLabel = new Label { Text = "Done", FontSize = labelFontSize };
             var doneSwitch = new CustomSwitch() { HorizontalOptions = LayoutOptions.Start };
             doneSwitch.SetBinding(Switch.IsToggledProperty, "Done");
 
-            var saveButton = new Button { Text = "Save" };
+            var saveButton = new Button { Text = "Save", FontSize = labelFontSize };
             saveButton.Clicked += (sender, e) =>
             {
                 if (nameEntry.Text != null && noteEditor.Text != null && selectedPickerValue != 0)
@@ -92,7 +98,7 @@ namespace Todo.Views
                 }
             };
 
-            var deleteButton = new Button { Text = "Delete" };
+            var deleteButton = new Button { Text = "Delete", FontSize = labelFontSize };
             deleteButton.Clicked += (sender, e) =>
             {
                 var todoItem = (TodoItem)BindingContext;
@@ -100,7 +106,7 @@ namespace Todo.Views
                 this.Navigation.PopAsync();
             };
 
-            var cancelButton = new Button { Text = "Cancel" };
+            var cancelButton = new Button { Text = "Cancel", FontSize = labelFontSize };
             cancelButton.Clicked += (sender, e) =>
             {
                 var todoItem = (TodoItem)BindingContext;
