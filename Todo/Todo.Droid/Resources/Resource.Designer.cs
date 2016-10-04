@@ -3868,6 +3868,27 @@ namespace Todo.Droid
 			// aapt resource value: 0x7f0a0112
 			public const int ThemeOverlay_AppCompat_Light = 2131362066;
 			
+			// aapt resource value: 0x7f0a0175
+			public const int TodoActionBar = 2131362165;
+			
+			// aapt resource value: 0x7f0a0177
+			public const int TodoActionBar_MenuTextStyle = 2131362167;
+			
+			// aapt resource value: 0x7f0a0178
+			public const int TodoActionBar_MenuTextStyleHihgSize = 2131362168;
+			
+			// aapt resource value: 0x7f0a0176
+			public const int TodoActionBarTitle = 2131362166;
+			
+			// aapt resource value: 0x7f0a0172
+			public const int TodoTheme = 2131362162;
+			
+			// aapt resource value: 0x7f0a0174
+			public const int TodoTheme_Base = 2131362164;
+			
+			// aapt resource value: 0x7f0a0173
+			public const int TodoThemeHighSize = 2131362163;
+			
 			// aapt resource value: 0x7f0a0113
 			public const int Widget_AppCompat_ActionBar = 2131362067;
 			
