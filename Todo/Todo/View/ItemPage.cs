@@ -44,11 +44,7 @@ namespace Todo.Views
             nameEntry.SetBinding(Entry.TextProperty, "Name");
 
             var noteLabel = new Label() { Text = "Note", FontSize = labelFontSize };
-            var noteEditor = new Editor()
-            {
-                Text = "Enter your note",
-                FontSize = entryFontSize
-            };
+            var noteEditor = new Editor() { FontSize = entryFontSize };
             noteEditor.SetBinding(Editor.TextProperty, "Note");
 
             var priorityLabel = new Label() { Text = "Priority", FontSize = labelFontSize };

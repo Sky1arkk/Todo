@@ -60,7 +60,7 @@ namespace Todo.Views
             {
                 ItemsSource = App.Database.GetItems(),
                 ItemTemplate = dataTemplate,
-                RowHeight = (int) (App.ScreenWidth / 10)
+                RowHeight = (int)(App.ScreenWidth / 10)
             };
 
             _todoItemListView.ItemSelected += (sender, e) =>
@@ -97,9 +97,7 @@ namespace Todo.Views
                         App.Database.DeleteItem(todoItem.Id);
                     }
 
-                    //Refresh page
-                    var listPage = new ListPage();
-                    Navigation.PushAsync(listPage);
+                    _todoItemListView.ItemsSource = (List<TodoItem>)App.Database.GetItems();
 
                 }, ToolbarItemOrder.Secondary, 0);
 
