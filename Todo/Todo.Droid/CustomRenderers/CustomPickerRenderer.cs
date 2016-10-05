@@ -36,7 +36,7 @@ namespace Todo.Droid.CustomRenderers
 
             var scaleAdapter = new ArrayAdapter<string>(this.Context, Android.Resource.Layout.SimpleSpinnerItem, scaleNames);
 
-            scaleAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            scaleAdapter.SetDropDownViewResource(Resource.Layout.spinnerItem);
 
             spinner.Adapter = scaleAdapter;
 
