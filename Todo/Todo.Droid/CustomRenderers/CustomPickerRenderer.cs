@@ -34,9 +34,19 @@ namespace Todo.Droid.CustomRenderers
 
             spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
 
-            var scaleAdapter = new ArrayAdapter<string>(this.Context, Android.Resource.Layout.SimpleSpinnerItem, scaleNames);
+            ArrayAdapter scaleAdapter;
 
-            scaleAdapter.SetDropDownViewResource(Resource.Layout.spinnerItem);
+            if (App.ScreenHeight > 800)
+            {
+                scaleAdapter = new ArrayAdapter<string>(this.Context, Resource.Layout.spinnerItem, scaleNames);
+                scaleAdapter.SetDropDownViewResource(Resource.Layout.spinnerItem);
+            }
+            else
+            {
+                scaleAdapter = new ArrayAdapter<string>(this.Context, Android.Resource.Layout.SimpleSpinnerItem,
+                    scaleNames);
+                scaleAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            }
 
             spinner.Adapter = scaleAdapter;
 
