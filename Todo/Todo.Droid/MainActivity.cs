@@ -15,6 +15,7 @@ namespace Todo.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            //test branch
             base.OnCreate(bundle);
 
             App.ScreenWidth = (Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
