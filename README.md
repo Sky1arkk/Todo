@@ -1,5 +1,6 @@
 # Todo
 Todo app for android and windows phone. Created using Xamarin Forms
+It's my first projcet. It's outdated now. Current version is here https://github.com/Sky1arkk/Todo2
 <h1> Android 5"</h1>
 <p align="center">
   <img src="https://github.com/Sky1arkk/Todo/blob/master/Screenshots/1.png" width="250"/>
